@@ -27,10 +27,13 @@ CSRF_TRUSTED_ORIGINS = [
 # Django CORS
 # ------------------------------------------------------------------------------
 # https://pypi.org/project/django-cors-headers/
+CORS_ORIGIN_ALLOW_ALL = True
+"""
 CORS_ORIGIN_WHITELIST = [
     'https://diskusi-publik.herokuapp.com',
     'https://opsional001.firebaseapp.com'
 ]
+"""
 
 
 # Static files (CSS, JavaScript, Images)
