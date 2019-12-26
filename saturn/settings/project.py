@@ -9,6 +9,7 @@ SITE_DOMAIN = 'www.konotasi.com'
 
 # Application definition
 PROJECT_APPS = [
+    'corsheaders',
     'rest_framework',
     'apps.person.apps.PersonConfig',
     'apps.debate.apps.DebateConfig',
@@ -17,7 +18,9 @@ INSTALLED_APPS = INSTALLED_APPS + PROJECT_APPS
 
 
 # Application middleware
-PROJECT_MIDDLEWARE = []
+PROJECT_MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+]
 MIDDLEWARE = MIDDLEWARE + PROJECT_MIDDLEWARE
 
 
