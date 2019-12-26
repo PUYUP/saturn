@@ -3,12 +3,13 @@ from datetime import timedelta
 from django.conf import settings
 from .base import *
 
-SITE_NAME = 'Konotasi'
-SITE_DOMAIN = 'www.konotasi.com'
+SITE_NAME = 'Diskusi Publik'
+SITE_DOMAIN = 'www.diskusipublik.com'
 
 
 # Application definition
 PROJECT_APPS = [
+    'corsheaders',
     'rest_framework',
     'apps.person.apps.PersonConfig',
     'apps.debate.apps.DebateConfig',
@@ -17,7 +18,9 @@ INSTALLED_APPS = INSTALLED_APPS + PROJECT_APPS
 
 
 # Application middleware
-PROJECT_MIDDLEWARE = []
+PROJECT_MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+]
 MIDDLEWARE = MIDDLEWARE + PROJECT_MIDDLEWARE
 
 

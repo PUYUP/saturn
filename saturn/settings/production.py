@@ -19,7 +19,6 @@ SESSION_COOKIE_SECURE = False
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.2/ref/csrf/
 CSRF_TRUSTED_ORIGINS = [
-    'diskusi-publik.herokuapp.com',
     'opsional001.firebaseapp.com'
 ]
 
@@ -27,8 +26,8 @@ CSRF_TRUSTED_ORIGINS = [
 # Django CORS
 # ------------------------------------------------------------------------------
 # https://pypi.org/project/django-cors-headers/
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'https://diskusi-publik.herokuapp.com',
     'https://opsional001.firebaseapp.com'
 ]
 
