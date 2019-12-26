@@ -27,4 +27,7 @@ class TopicSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def create(self, validated_data):
-        return Topic.objects.create(**validated_data)
+        access_group = validated_data.pop('access_group')
+        topic_obj = Topic.objects.create(**validated_data)
+        topic_obj.access_group.set(access_group)
+        return topic_obj
