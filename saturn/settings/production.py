@@ -18,13 +18,19 @@ SESSION_COOKIE_SECURE = False
 # Django csrf
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.2/ref/csrf/
-CSRF_TRUSTED_ORIGINS = ['diskusi-publik.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = [
+    'diskusi-publik.herokuapp.com',
+    'opsional001.firebaseapp.com'
+]
 
 
 # Django CORS
 # ------------------------------------------------------------------------------
 # https://pypi.org/project/django-cors-headers/
-CORS_ORIGIN_WHITELIST = ['https://diskusi-publik.herokuapp.com']
+CORS_ORIGIN_WHITELIST = [
+    'https://diskusi-publik.herokuapp.com',
+    'https://opsional001.firebaseapp.com'
+]
 
 
 # Static files (CSS, JavaScript, Images)
