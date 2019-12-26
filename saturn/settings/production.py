@@ -42,10 +42,10 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8btrf1chrlqid',
-        'USER': 'mblgmlnxabnoip',
-        'PASSWORD': 'fd334241f5f4a93b8fd0de6f3a81ac87e42aef0979da7a4672d78e46eba7a02d',
-        'HOST': 'ec2-107-20-155-148.compute-1.amazonaws.com',
+        'NAME': 'ddkmarkuh0j349',
+        'USER': 'guwpftsjmkwkpz',
+        'PASSWORD': '6a9f6e8443ffcfea87206cccda8752712af30e7fea9d7cc57c8bf2ce399b441f',
+        'HOST': 'ec2-54-235-92-244.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
