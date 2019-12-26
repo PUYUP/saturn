@@ -12,7 +12,8 @@ REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
 # Django Sessions
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.2/ref/settings/
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = None
 
 
 # Django csrf
