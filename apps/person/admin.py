@@ -57,7 +57,7 @@ class UserAdminExtend(UserAdmin):
         (None, {'fields': ('username', 'password', 'email')}),
         (_("Personal info"), {'fields': ('first_name', 'last_name',)}),
         (_("Permissions"), {
-            'fields': ('is_active', 'is_staff', 'is_superuser', 'roles', 'user_permissions',),
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'roles',),
         }),
         (_("Important dates"), {'fields': ('last_login', 'date_joined')}),
     )
