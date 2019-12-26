@@ -1,7 +1,7 @@
 from .base import *
 from .project import *
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '::1', '127.0.0.1', 'diskusi-publik.herokuapp.com']
 
 REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
@@ -24,7 +24,7 @@ CSRF_TRUSTED_ORIGINS = ['diskusi-publik.herokuapp.com']
 # Django CORS
 # ------------------------------------------------------------------------------
 # https://pypi.org/project/django-cors-headers/
-CORS_ORIGIN_WHITELIST = ['diskusi-publik.herokuapp.com']
+CORS_ORIGIN_WHITELIST = ['https://diskusi-publik.herokuapp.com']
 
 
 # Static files (CSS, JavaScript, Images)
