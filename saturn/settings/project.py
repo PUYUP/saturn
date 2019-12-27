@@ -49,7 +49,8 @@ CACHES = {
 # Django Email
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.2/topics/email/
-DEFAULT_FROM_EMAIL = '%s <teste.coenocyte@gmail.com>' % SITE_NAME
+DEFAULT_FROM_EMAIL = '%s <noreply@diskusipublik.com>' % SITE_NAME
+"""
 DEFAULT_TO_EMAIL = 'hellopuyup@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -57,6 +58,14 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'teste.coenocyte@gmail.com'
 EMAIL_HOST_PASSWORD = 'ind0nesi@'
+"""
+
+SENDGRID_API_KEY = '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'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Django Rest Framework (DRF)
