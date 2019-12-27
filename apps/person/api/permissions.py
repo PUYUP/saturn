@@ -20,7 +20,7 @@ class IsAllowUpdateObject(permissions.BasePermission):
             if (
                 request.user.has_perm('person.add_%svalue' % basename_clean) and
                 request.user.has_perm('person.change_%svalue' % basename_clean) and
-                request.user.has_perm('debate.delete_%svalue' % basename_clean)
+                request.user.has_perm('person.delete_%svalue' % basename_clean)
             ):
                 return True
         return False
