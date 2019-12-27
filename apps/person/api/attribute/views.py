@@ -22,7 +22,7 @@ from rest_framework.exceptions import NotFound, NotAcceptable, ValidationError
 from .serializers import AttributeSerializer, AttributeValueSerializer
 
 # PERMISSIONS
-from ..permissions import IsAllowUpdateObject, IsEntityOwnerOrReject
+from ..permissions import IsAllowUpdateObject
 
 # GET MODELS FROM GLOBAL UTILS
 from utils.generals import get_model
@@ -40,7 +40,7 @@ class AttributeApiView(viewsets.ViewSet):
     permission_action = {
         # Disable update if not owner
         'partial_update': [IsAllowUpdateObject],
-        'destroy': [IsEntityOwnerOrReject],
+        'destroy': [IsAllowUpdateObject],
     }
 
     def get_permissions(self):

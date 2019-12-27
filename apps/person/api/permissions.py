@@ -14,10 +14,14 @@ AttributeValue = get_model('person', 'AttributeValue')
 class IsAllowUpdateObject(permissions.BasePermission):
     def has_permission(self, request, view):
         basename = getattr(view, 'basename', None)
+        basename_clean = basename.replace('_', '')
 
         if hasattr(request.user, 'person'):
-            if (request.user.has_perm('person.add_%svalue' % basename) and
-                    request.user.has_perm('person.change_%svalue' % basename)):
+            if (
+                request.user.has_perm('person.add_%svalue' % basename_clean) and
+                request.user.has_perm('person.change_%svalue' % basename_clean) and
+                request.user.has_perm('debate.delete_%svalue' % basename_clean)
+            ):
                 return True
         return False
 
@@ -43,35 +47,4 @@ class IsOwnerOrReject(permissions.BasePermission):
             except ValueError:
                 return False
             return current_uuid == user_uuid
-        return False
-
-
-class IsEntityOwnerOrReject(permissions.BasePermission):
-    """Entity Permission"""
-
-    def has_permission(self, request, view):
-        # Staff can always access CRUD
-        if request.user.is_staff:
-            return True
-
-        # Only as person allowed
-        person = getattr(request.user, 'person', None)
-        if person:
-            entity_type = ContentType.objects.get_for_model(person)
-
-            if request.method == 'DELETE':
-                entity_uuid = request.GET.get('uuid', None)
-
-            try:
-                entity_uuid = UUID(entity_uuid)
-            except ValueError:
-                return False
-
-            try:
-                AttributeValue.objects.get(
-                    uuid=entity_uuid, object_id=person.pk,
-                    content_type=entity_type)
-            except ObjectDoesNotExist:
-                return False
-            return True
         return False
