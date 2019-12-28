@@ -39,8 +39,8 @@ CORS_ORIGIN_WHITELIST = [
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-#  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# Add configuration for static files storage using whitenoise
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Database
