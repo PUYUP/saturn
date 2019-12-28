@@ -28,6 +28,9 @@ from ...utils.constant import (
 # LOCAL PERMISSIONS
 from ..permissions import IsAllowOrReject, IsCreatorOrReject
 
+# PERSON PERMISSIONS
+from ....person.api.permissions import IsAccountValidated
+
 Category = get_model('debate', 'Category')
 Topic = get_model('debate', 'Topic')
 
@@ -40,8 +43,8 @@ class TopicApiView(viewsets.ViewSet):
     permission_classes = (AllowAny,)
     permission_action = {
         # Disable update if not owner
-        'create': [IsAllowOrReject],
-        'partial_update': [IsAuthenticated, IsAllowOrReject, IsCreatorOrReject],
+        'create': [IsAuthenticated, IsAccountValidated, IsAllowOrReject],
+        'partial_update': [IsAuthenticated, IsAccountValidated, IsAllowOrReject, IsCreatorOrReject],
         'destroy': [IsAuthenticated, IsAllowOrReject, IsCreatorOrReject],
     }
 

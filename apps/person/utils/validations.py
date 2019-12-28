@@ -2,7 +2,7 @@ import asyncio
 from datetime import date, datetime
 
 from django.db import models, IntegrityError
-from django.db.models import Q, F, Case, When, Value, CharField, Subquery, OuterRef
+from django.db.models import Q, F, Case, When, Value, CharField, Subquery, Exists, OuterRef
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.validators import RegexValidator, validate_email, URLValidator
@@ -139,6 +139,37 @@ class ValidationManager(models.Manager):
             annotate[value_field] = Subquery(validation_values.values(value_field)[:1])
             annotate['value_uuid'] = Subquery(validation_values.values('uuid')[:1])
             annotate['is_verified'] = Subquery(validation_values.values('is_verified')[:1])
+        return queryset.annotate(**annotate)
+
+    def check_validations(self, person, content_type=None):
+        roles = person.roles.filter(is_active=True) \
+            .values_list('id', flat=True)
+
+        queryset = self.prefetch_related('content_type', 'roles') \
+            .filter(
+                content_type=content_type,
+                is_required=True,
+                roles__in=roles) \
+            .distinct()
+
+        if not queryset.exists():
+            return None
+
+        # Extract validation value
+        ValidationValue = get_model('person', 'ValidationValue')
+        validation_values = ValidationValue.objects \
+            .prefetch_related('validation',  'content_type') \
+            .select_related('validation',  'content_type') \
+            .filter(
+                validation__identifier__in=OuterRef('identifier'),
+                object_id=person.pk,
+                is_verified=True)
+
+        annotate = dict()
+        for q in queryset:
+            value_field = 'value_' + q.field_type
+            annotate['is_verified'] = Exists(validation_values)
+            annotate[value_field] = Exists(validation_values)
         return queryset.annotate(**annotate)
 
     """===========================================================

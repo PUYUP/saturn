@@ -2,6 +2,7 @@ from uuid import UUID
 
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import permissions
 
@@ -9,6 +10,7 @@ from rest_framework import permissions
 from utils.generals import get_model
 
 AttributeValue = get_model('person', 'AttributeValue')
+Validation = get_model('person', 'Validation')
 
 
 class IsAllowUpdateObject(permissions.BasePermission):
@@ -48,3 +50,22 @@ class IsOwnerOrReject(permissions.BasePermission):
                 return False
             return current_uuid == user_uuid
         return False
+
+
+class IsAccountValidated(permissions.BasePermission):
+    message = _("Akun belum tervalidasi.")
+
+    def has_permission(self, request, view):
+        person = getattr(request.user, 'person', None)
+        if not person:
+            return False
+
+        is_verified = True
+        content_type = ContentType.objects.get_for_model(person)
+        validations = Validation.objects.check_validations(person, content_type)
+
+        for item in validations:
+            if item.is_verified == False:
+                is_verified = item.is_verified
+                break
+        return is_verified
