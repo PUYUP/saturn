@@ -14,11 +14,18 @@ REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
 # https://docs.djangoproject.com/en/2.2/ref/settings/
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_HTTPONLY = True
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT = True
+X_FRAME_OPTIONS = 'DENY'
 
 
 # Django csrf
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/2.2/ref/csrf/
+CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [
     'opsional001.firebaseapp.com'
 ]
