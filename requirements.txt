@@ -11,3 +11,4 @@ djangorestframework-simplejwt>=4.3.0
 Pillow>=6.2.1
 django-treebeard>=4.3
 whitenoise==3.2
+mysqlclient>=1.4.6
