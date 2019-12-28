@@ -3,6 +3,7 @@ from django.db import transaction
 # THIRD PARTY
 from rest_framework import serializers
 from rest_framework import status as response_status
+from rest_framework.exceptions import NotAcceptable
 
 from utils.generals import get_model
 from ...utils.auths import CurrentPersonDefault
